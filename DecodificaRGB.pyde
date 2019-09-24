@@ -17,8 +17,6 @@ def decode():
     altez=immagine.height
     print(larg,altez)
     while (pixel<larg*altez):
-        print(pixel)
-
         r=red(immagine.pixels[pixel])
         g=green(immagine.pixels[pixel])
         b=blue(immagine.pixels[pixel])
