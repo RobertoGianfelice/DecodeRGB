@@ -1,31 +1,39 @@
-LarghezzaImg=400
-AltezzaImg=500
-
 def setup():
+    size(1000,1000)
+
     global immagine
-    immagine=loadImage("DivinaCommedia.tiff")
+    immagine=loadImage("Frase.tiff")
 
-    size(LarghezzaImg,AltezzaImg)
-
-    noLoop()
+    decode()
 
 
-def draw():
+def decode():
+    patchwork=True
+
     immagine.loadPixels()
-    car=0
     frase=""
-    loc=0
+    pixel=0
     larg=immagine.width
     altez=immagine.height
+    print(larg,altez)
+    while (pixel<larg*altez):
+        print(pixel)
 
-    while (loc<larg*altez):
-        r=red(immagine.pixels[loc])
-        g=green(immagine.pixels[loc])
-        b=blue(immagine.pixels[loc])
+        r=red(immagine.pixels[pixel])
+        g=green(immagine.pixels[pixel])
+        b=blue(immagine.pixels[pixel])
         frase=frase+chr(int(r))+chr(int(g))+chr(int(b))
         if len(frase)>160:
             print (frase)
             frase=""   
-        loc+=1
-    print("fine")
+        
+        if patchwork:
+            pixel+=100
+            if (pixel%larg==0):
+                pixel=pixel+larg*99
+        else:
+            pixel+=1
+    
+    print (frase)
+
     image(immagine,0,0)
